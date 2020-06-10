@@ -18,6 +18,8 @@ function App() {
   const [modal, setModal] = useState(false);
   const [picture, setPicture] = useState("");
 
+  
+
   const searchPicture = async (page) => {
     setLoader(true);
     try {
@@ -30,6 +32,7 @@ function App() {
     } finally {
       setLoader(false);
       scrollPage();
+      
     }
   };
 
@@ -39,6 +42,7 @@ function App() {
       setPageNumber(1);
     }
     setSearch(e.target.value);
+    
   };
 
   const addPage = async (e) => {
@@ -50,8 +54,10 @@ function App() {
 
   const addPictureToPage = (e) => {
     e.preventDefault();
-    searchPicture();
-  };
+    searchPicture(pageNumber);
+    e.target.value = ""
+    document.getElementById('request_field').reset()    
+  }; 
 
   const scrollPage = () => {
     window.scrollTo({
@@ -68,6 +74,8 @@ function App() {
   const closeModal = (e) => {
     setModal(false);
   };
+
+  
 
   return (
     <>
